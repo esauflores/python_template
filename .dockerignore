@@ -1,0 +1,65 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.pytest_cache
+htmlcov
+
+# Development
+.vscode
+.devcontainer
+.pre-commit-config.yaml
+.secrets.baseline
+
+# Documentation
+README.md
+docs/
+
+# Tests
+tests/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# IDE
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies (we'll install fresh)
+node_modules/
+.venv/
+
+# Temporary files
+tmp/
+temp/

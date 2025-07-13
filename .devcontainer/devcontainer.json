@@ -1,0 +1,43 @@
+{
+    "name": "Python Template Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.mypy-type-checker",
+                "charliermarsh.ruff",
+                "ms-python.debugpy",
+                "ms-toolsai.jupyter",
+                "tamasfe.even-better-toml",
+                "redhat.vscode-yaml",
+                "ms-vscode.vscode-json"
+            ]
+        }
+    },
+
+    "containerEnv": {
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/workspaces/python_template"
+    },
+
+    // Use 'forwardPorts' to make ports available locally.
+    // "forwardPorts": [],
+
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "make install",
+    "postCreateCommand": ".devcontainer/setup-vscode.sh", // if using vscode
+
+    // Uncomment to connect as root. More info: https://aka.ms/dev-containers-non-root.
+    "remoteUser": "vscode"
+}

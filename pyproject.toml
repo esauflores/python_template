@@ -1,0 +1,85 @@
+[project]
+name = "python-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.116.1",
+    "httpx>=0.28.1",
+    "passlib[bcrypt]>=1.7.4",
+    "psycopg2-binary>=2.9.10",
+    "pydantic-settings>=2.10.1",
+    "python-dotenv>=1.1.1",
+    "python-jose[cryptography]>=3.5.0",
+    "sqlalchemy>=2.0.41",
+    "structlog>=25.4.0",
+]
+
+
+[dependency-groups]
+dev = [
+    "bandit>=1.8.6",
+    "detect-secrets>=1.5.0",
+    "mypy>=1.16.1",
+    "nbstripout>=0.8.1",
+    "pre-commit>=4.2.0",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.0.0",
+    "pytest-cov>=6.2.1",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.12.3",
+    "types-requests>=2.32.4.20250611",
+]
+
+
+[tool.ruff]
+line-length = 88
+target-version = "py311" # Assumes Python 3.11 features
+
+[tool.ruff.lint]
+# Select which types of issues Ruff should check for.
+# E/W: pycodestyle errors/warnings (PEP 8)
+# F: Pyflakes (logical errors like unused imports/variables)
+# I: isort (import sorting)
+# B: flake8-bugbear (potential bugs and design issues)
+# C4: flake8-comprehensions (more Pythonic list/dict/set comprehensions)
+# UP: pyupgrade (suggests modern Python syntax)
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = []
+
+[tool.ruff.format]
+# Configure Ruff's auto-formatting behavior.
+quote-style = "double"    # Prefer "double" quotes for strings
+indent-style = "space"    # Use spaces for indentation
+
+[tool.mypy]
+# Mypy is a static type checker for Python.
+python_version = "3.11"         # Target Python version for type checking
+strict = true                   # Enable all strict type checking flags
+warn_unused_configs = true      # Warn about unused Mypy settings
+no_implicit_optional = true     # Make 'Optional[T]' explicit
+warn_no_return = true           # Warn if a function doesn't return when it should
+warn_unreachable = true         # Warn about code that can never be executed
+disallow_untyped_decorators = false # FastAPI decorators often lack type hints
+
+# Fix module path issues
+explicit_package_bases = true
+namespace_packages = true
+
+# Handle missing imports gracefully for MLOps libraries
+ignore_missing_imports = true
+
+# Exclude problematic directories
+exclude = [
+    "^build/",
+    "^dist/",
+    "^\\.venv/",
+    "^\\.git/",
+]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]          # # Directory where your tests are located
+pythonpath = ["."]             # This adds the project root to Python path
+addopts = "--cov=src --cov-report=term-missing --cov-report=html"

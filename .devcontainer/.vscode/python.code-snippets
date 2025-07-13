@@ -1,0 +1,128 @@
+{
+    "FastAPI Route": {
+        "prefix": "fastapi-route",
+        "body": [
+            "@app.${1|get,post,put,delete,patch|}(\"${2:/endpoint}\")",
+            "async def ${3:function_name}(${4:params}):",
+            "    \"\"\"${5:Description}\"\"\"",
+            "    ${6:pass}",
+            "    return {\"message\": \"${7:response}\"}"
+        ],
+        "description": "FastAPI route template"
+    },
+    "FastAPI Route with Response Model": {
+        "prefix": "fastapi-route-response",
+        "body": [
+            "@app.${1|get,post,put,delete,patch|}(\"${2:/endpoint}\", response_model=${3:ResponseModel})",
+            "async def ${4:function_name}(${5:params}):",
+            "    \"\"\"${6:Description}\"\"\"",
+            "    ${7:pass}",
+            "    return ${3:ResponseModel}(${8:data})"
+        ],
+        "description": "FastAPI route with response model"
+    },
+    "Pydantic Model": {
+        "prefix": "pydantic-model",
+        "body": [
+            "class ${1:ModelName}(BaseModel):",
+            "    \"\"\"${2:Description}\"\"\"",
+            "    ${3:field}: ${4:str}",
+            "    ",
+            "    model_config = ConfigDict(",
+            "        json_schema_extra={",
+            "            \"example\": {",
+            "                \"${3:field}\": \"${5:example_value}\"",
+            "            }",
+            "        }",
+            "    )"
+        ],
+        "description": "Pydantic model template"
+    },
+    "Pytest Test": {
+        "prefix": "pytest-test",
+        "body": [
+            "def test_${1:function_name}():",
+            "    \"\"\"${2:Test description}\"\"\"",
+            "    # Arrange",
+            "    ${3:setup}",
+            "    ",
+            "    # Act",
+            "    ${4:result = function_call()}",
+            "    ",
+            "    # Assert",
+            "    ${5:assert result == expected}"
+        ],
+        "description": "Pytest test template"
+    },
+    "Async Pytest Test": {
+        "prefix": "pytest-async",
+        "body": [
+            "@pytest.mark.asyncio",
+            "async def test_${1:function_name}():",
+            "    \"\"\"${2:Test description}\"\"\"",
+            "    # Arrange",
+            "    ${3:setup}",
+            "    ",
+            "    # Act",
+            "    ${4:result = await async_function_call()}",
+            "    ",
+            "    # Assert",
+            "    ${5:assert result == expected}"
+        ],
+        "description": "Async pytest test template"
+    },
+    "FastAPI TestClient Test": {
+        "prefix": "fastapi-test",
+        "body": [
+            "def test_${1:endpoint_name}(client: TestClient):",
+            "    \"\"\"${2:Test description}\"\"\"",
+            "    # Act",
+            "    response = client.${3|get,post,put,delete,patch|}(\"${4:/endpoint}\")",
+            "    ",
+            "    # Assert",
+            "    assert response.status_code == ${5:200}",
+            "    assert response.json() == ${6:expected_response}"
+        ],
+        "description": "FastAPI test with TestClient"
+    },
+    "SQLAlchemy Model": {
+        "prefix": "sqlalchemy-model",
+        "body": [
+            "class ${1:ModelName}(Base):",
+            "    \"\"\"${2:Description}\"\"\"",
+            "    __tablename__ = \"${3:table_name}\"",
+            "    ",
+            "    id: Mapped[int] = mapped_column(primary_key=True)",
+            "    ${4:field}: Mapped[${5:str}] = mapped_column(${6:String(255)})",
+            "    created_at: Mapped[datetime] = mapped_column(default=func.now())",
+            "    updated_at: Mapped[datetime] = mapped_column(default=func.now(), onupdate=func.now())"
+        ],
+        "description": "SQLAlchemy model template"
+    },
+    "Logger Setup": {
+        "prefix": "structlog-logger",
+        "body": [
+            "import structlog",
+            "",
+            "logger = structlog.get_logger()"
+        ],
+        "description": "Structlog logger setup"
+    },
+    "Environment Variable": {
+        "prefix": "env-var",
+        "body": [
+            "${1:variable_name}: ${2:str} = Field(default=\"${3:default_value}\", description=\"${4:Description}\")"
+        ],
+        "description": "Environment variable with Pydantic Field"
+    },
+    "FastAPI Dependency": {
+        "prefix": "fastapi-dependency",
+        "body": [
+            "def ${1:dependency_name}(${2:params}) -> ${3:ReturnType}:",
+            "    \"\"\"${4:Dependency description}\"\"\"",
+            "    ${5:pass}",
+            "    return ${6:value}"
+        ],
+        "description": "FastAPI dependency function"
+    }
+}
